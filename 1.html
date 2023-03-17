@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>lab3</title>
+        <script>
+            function generateTree(elem){
+                var child = elem.firstElementChild;
+                var ul = document.createElement('ul');
+                while(child){
+                    var li = document.createElement('li');
+                    li.innerHTML = child.tagName;
+                    console.log("Obrabotka elementa " + child.tagName)
+                    var list = generateTree(child);
+                    li.appendChild(list);
+                    ul.appendChild(li);
+                    child = child.nextElementSibling;
+                }
+                elem=document.getElementById("Hello");
+                elem.textContent="";
+                elem.appendChild(ul);
+                return ul;
+            }
+        </script>
+    </head>
+    <body>
+        <table border="1">
+            <tr>
+                <th>Время</th>
+                <th>ЧС</th>
+                <th>ЗН</th>
+                <th>Часов</th>
+            </tr>
+            <tr>
+                <th>08:30 - 10:05 </th>
+                <th colspan="2">(сем) Элективный курс по физической культуре и спорту каф. ФВ </th>
+                <th rowspan="2">70</th>
+            </tr>
+            <tr>
+                <th>10:15 - 11:50 </th>
+                <th colspan="2">(сем) Элективный курс по физической культуре и спорту каф. ФВ </th>
+            </tr>
+            <tr>
+                <th>12:00 - 13:35  </th>
+                <th>(лаб) Электротехника каф. ИУ6 </th>
+                <th>(лаб) Языки интернет-программирования каф. ИУ6 </th>
+                <th>120</th>
+            </tr>
+        </table>
+        <button type="button" onclick="generateTree(document.documentElement)">Show Derevo elementov</button>
+        <div id="Hello">
+        </div>    
+    </body>
+</html>
